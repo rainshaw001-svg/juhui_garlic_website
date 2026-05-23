@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiangyi Food &amp; Bloom New Material - Global Supply Chain Solutions</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #2d2d2d; line-height: 1.6; }
+
+  :root {
+    --green: #2d6a2e;
+    --green-light: #4a8c4b;
+    --gold: #c8a951;
+    --gold-light: #e8d48b;
+    --bg: #fafaf7;
+    --bg-dark: #1a2e1a;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(26, 46, 26, 0.95); backdrop-filter: blur(8px);
+    padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
+  }
+  nav .logo { color: var(--gold); font-size: 16px; font-weight: 700; letter-spacing: 0.5px; }
+  nav .logo .sub { color: #aaa; font-weight: 400; font-size: 11px; display: block; margin-top: -2px; }
+  nav a { color: #ccc; text-decoration: none; margin-left: 20px; font-size: 16px; transition: color .2s; }
+  nav a:hover { color: var(--gold); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #2d4a2d 50%, var(--bg-dark) 100%);
+    color: #fff; padding: 80px 24px;
+  }
+  .hero h1 { font-size: clamp(32px, 5.5vw, 56px); font-weight: 700; margin-bottom: 4px; }
+  .hero h1 .gold,
+  .hero .company-line .gold { color: var(--gold); }
+  .hero .company-line { font-size: clamp(32px, 5.5vw, 56px); font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .hero .hero-icon {
+    font-size: clamp(64px, 12vw, 120px); margin-bottom: 16px; display: block; line-height: 1;
+  }
+  .hero .sub { font-size: clamp(18px, 2.8vw, 30px); color: var(--gold-light); margin-bottom: 16px; font-weight: 400; }
+  .hero .desc { font-size: clamp(14px, 1.8vw, 18px); color: #bbb; max-width: 600px; margin: 0 auto 24px; }
+  .hero .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px; }
+  .hero .tag {
+    border: 1px solid var(--gold); color: var(--gold);
+    padding: 4px 16px; border-radius: 20px; font-size: 13px;
+  }
+  .hero .btn {
+    display: inline-block; background: var(--gold); color: var(--bg-dark);
+    padding: 12px 32px; border-radius: 6px; text-decoration: none;
+    font-weight: 600; font-size: 15px; transition: opacity .2s;
+  }
+  .hero .btn:hover { opacity: 0.9; }
+  .hero .scroll-hint {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    color: #888; font-size: 12px; animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* Sections common */
+  section { padding: 80px 24px; max-width: 1200px; margin: 0 auto; }
+  .section-title { text-align: center; margin-bottom: 48px; }
+  .section-title h2 { font-size: 30px; color: var(--green); margin-bottom: 8px; }
+  .section-title .subtitle { color: #999; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
+  .section-title p { color: #666; max-width: 600px; margin: 12px auto 0; font-size: 15px; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .about-img {
+    background: linear-gradient(135deg, #e8f0e8, #d0e0d0); border-radius: 12px;
+    min-height: 360px; display: flex; align-items: center; justify-content: center;
+    font-size: 64px; overflow: hidden;
+  }
+  .about-img svg { width: 100%; height: 100%; }
+  .about-text h3 { font-size: 22px; color: var(--green); margin-bottom: 16px; }
+  .about-text p { color: #555; margin-bottom: 12px; font-size: 15px; }
+
+  /* Product Category headers */
+  .cat-header {
+    display: flex; align-items: center; gap: 16px;
+    margin: 48px 0 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .cat-header h3 { font-size: 24px; color: var(--green); }
+  .cat-header .badge {
+    background: var(--gold); color: var(--bg-dark);
+    font-size: 11px; padding: 2px 10px; border-radius: 12px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+  .cat-header .count { color: #999; font-size: 13px; margin-left: auto; }
+
+  /* Product Grid */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .product-card {
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .product-card .img-wrap {
+    width: 100%; height: 220px; overflow: hidden; background: #f0f0f0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .product-card .img-wrap-contain { background: #fff; }
+  .product-card .img-wrap-contain img { object-fit: contain; }
+  .product-card .img-wrap .placeholder { font-size: 56px; opacity: 0.3; }
+  .product-card .info { padding: 20px; }
+  .product-card h4 { font-size: 18px; color: var(--green); margin-bottom: 2px; }
+  .product-card .en-name { color: #999; font-size: 13px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .product-card .spec { font-size: 13px; color: #666; }
+  .product-card .spec li { list-style: none; padding: 2px 0; }
+  .product-card .spec li::before { content: "• "; color: var(--gold); }
+
+  /* Products background */
+  .products-section { background: var(--bg); }
+  .products-inner { max-width: 1200px; margin: 0 auto; padding: 80px 24px; }
+  .products-inner .section-title { margin-bottom: 16px; }
+
+  /* Why Us */
+  .benefits { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
+  .benefit-card { text-align: center; padding: 32px 20px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .benefit-card .icon { font-size: 36px; margin-bottom: 12px; }
+  .benefit-card h4 { color: var(--green); margin-bottom: 8px; }
+  .benefit-card p { color: #666; font-size: 13px; }
+
+  /* Contact */
+  .contact-section { background: var(--bg-dark); color: #ddd; }
+  .contact-inner { max-width: 1200px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+  .contact-inner .section-title h2 { color: var(--gold); }
+  .contact-inner .section-title .subtitle { color: #888; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; }
+  .contact-item { padding: 20px; background: rgba(255,255,255,0.05); border-radius: 8px; }
+  .contact-item .icon { font-size: 24px; margin-bottom: 8px; }
+  .contact-item h4 { color: var(--gold); margin-bottom: 4px; font-size: 14px; }
+  .contact-item p { font-size: 15px; }
+  .contact-inner .btn {
+    display: inline-block; background: #25D366; color: #fff;
+    padding: 12px 32px; border-radius: 6px; text-decoration: none;
+    font-weight: 600; font-size: 15px; margin-top: 24px; transition: opacity .2s;
+  }
+  .contact-inner .btn:hover { opacity: 0.9; }
+
+  /* Footer */
+  footer { background: #111; color: #666; text-align: center; padding: 24px; font-size: 13px; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav a { margin-left: 10px; font-size: 12px; }
+    nav .logo { font-size: 14px; }
+    .about-grid { grid-template-columns: 1fr; }
+    section { padding: 48px 16px; }
+    .products-inner { padding: 48px 16px; }
+    .contact-inner { padding: 48px 16px; }
+    .product-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">Jiangyi Food <span style="color:#fff;font-weight:400;font-size:11px">+</span> Bloom New Material
+    <span class="sub">Global Supply Chain Solutions</span>
+  </div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div>
+    <div class="hero-icon">🌏</div>
+    <h1>Jiangyi Food <span class="gold">Co., Ltd</span></h1>
+    <div class="company-line">Bloom New Material <span class="gold">Co., Ltd</span></div>
+    <div class="sub">From China to the World</div>
+    <div class="desc">
+      Your trusted partner in agricultural products, packaging solutions, and industrial materials.<br>
+      Sourcing from China with quality assurance and competitive pricing.
+    </div>
+    <div class="tags">
+      <span class="tag">Garlic</span>
+      <span class="tag">Ginger</span>
+      <span class="tag">Onion</span>
+      <span class="tag">Packaging</span>
+      <span class="tag">Aluminum Coated Sheets</span>
+      <span class="tag">Bearings</span>
+    </div>
+    <a href="#products" class="btn">Explore Products</a>
+    <div class="scroll-hint">↓ Scroll</div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-title">
+    <h2>About Us</h2>
+    <div class="subtitle">Who We Are</div>
+  </div>
+  <div class="about-grid">
+    <div class="about-img">
+      <svg viewBox="0 0 500 360" width="500" height="360" style="background:linear-gradient(135deg,#e8f0e8,#d0e0d0)">
+        <text x="250" y="160" text-anchor="middle" fill="#2d6a2e" font-size="80" font-family="sans-serif">🌏</text>
+        <text x="250" y="210" text-anchor="middle" fill="#2d6a2e" font-size="18" font-family="sans-serif" font-weight="bold">From China to the World</text>
+        <text x="250" y="240" text-anchor="middle" fill="#4a8c4b" font-size="14" font-family="sans-serif">Jiangyi Food + Bloom New Material</text>
+      </svg>
+    </div>
+    <div class="about-text">
+      <h3>Your Global Supply Partner</h3>
+      <p><strong>Jiangyi Food Co., Ltd</strong> and <strong>Bloom New Material Co., Ltd.</strong> form a comprehensive export group based in Shandong, China — home to the largest garlic production region in the country. We specialize in the export of agricultural products, packaging materials, and industrial supplies.</p>
+      <p>With years of experience serving markets across the Middle East, Africa, Southeast Asia, and beyond, we pride ourselves on reliable supply chains, strict quality control, and customer-centric service.</p>
+      <p><strong>Location:</strong> Shandong, China<br>
+      <strong>Focus:</strong> Agricultural Export &middot; Packaging Solutions &middot; Industrial Materials</p>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<div class="products-section" id="products">
+  <div class="products-inner">
+    <div class="section-title">
+      <h2>Our Products</h2>
+      <div class="subtitle">Product Categories</div>
+      <p>Comprehensive product portfolio serving global buyers</p>
+    </div>
+
+    <!-- Priority 1: Agricultural Products -->
+    <div class="cat-header">
+      <h3>🌿 Agricultural Products</h3>
+      <span class="badge">#1 Priority</span>
+      <span class="count">6 products</span>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/agriculture/Fresh Garlic.jpg" alt="Fresh Garlic" loading="lazy"></div>
+        <div class="info">
+          <h4>Solo Garlic</h4>
+          <div class="en-name">Fresh Garlic</div>
+          <ul class="spec">
+            <li>Size: 3.5–4.5 cm / 5–5.5 cm</li>
+            <li>Packaging: Mesh bag, 10kg carton</li>
+            <li>Origin: Jinxiang, Shandong</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/agriculture/Fresh Normal White Garlic.png" alt="Normal White Garlic" loading="lazy"></div>
+        <div class="info">
+          <h4>Normal White Garlic</h4>
+          <div class="en-name">Premium White Garlic</div>
+          <ul class="spec">
+            <li>Size: 5–6 cm</li>
+            <li>Packing: 10kg/20kg carton</li>
+            <li>Supply: Year-round</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/agriculture/Fresh Pure White Garlic.png" alt="Pure White Garlic" loading="lazy"></div>
+        <div class="info">
+          <h4>Pure White Garlic</h4>
+          <div class="en-name">Premium Pure White</div>
+          <ul class="spec">
+            <li>Size: 5–6.5 cm</li>
+            <li>Packing: 10kg/20kg carton</li>
+            <li>Feature: Bright white skin, tight cloves</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/agriculture/Fresh Ginger.png" alt="Fresh Ginger" loading="lazy"></div>
+        <div class="info">
+          <h4>Fresh Ginger</h4>
+          <div class="en-name">Fresh Ginger Root</div>
+          <ul class="spec">
+            <li>Size: 100g–300g per piece</li>
+            <li>Packaging: Mesh bag, carton</li>
+            <li>Origin: Shandong</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/agriculture/Fresh Carrot.jpg" alt="Fresh Carrot" loading="lazy"></div>
+        <div class="info">
+          <h4>Fresh Carrot</h4>
+          <div class="en-name">Export Grade Carrots</div>
+          <ul class="spec">
+            <li>Size: 200g+ per piece</li>
+            <li>Packaging: 10kg/20kg mesh bag</li>
+            <li>Quality: Machine washed, graded</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/agriculture/Fresh Potato.png" alt="Fresh Potato" loading="lazy"></div>
+        <div class="info">
+          <h4>Fresh Potato</h4>
+          <div class="en-name">Fresh Potatoes</div>
+          <ul class="spec">
+            <li>Size: 50g–300g</li>
+            <li>Packaging: 20kg/50kg bag</li>
+            <li>Variety: Suitable for export</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Priority 2: Packaging Materials -->
+    <div class="cat-header">
+      <h3>📦 Packaging Materials</h3>
+      <span class="badge">#2 Priority</span>
+      <span class="count">3 categories</span>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/packaging/pvc_cling_film.jpg" alt="PVC Cling Film" loading="lazy"></div>
+        <div class="info">
+          <h4>Food-Grade Packaging</h4>
+          <div class="en-name">PVC CLING FILM</div>
+          <ul class="spec">
+            <li>Food-grade PVC cling film for fresh produce</li>
+            <li>Excellent transparency and stretchability</li>
+            <li>Ideal for fruit, vegetable &amp; food preservation</li>
+            <li>Custom sizes and roll lengths available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/packaging/pet_shrink_film.jpg" alt="PET Shrink Film" loading="lazy"></div>
+        <div class="info">
+          <h4>Food-Grade Packaging</h4>
+          <div class="en-name">PET SHRINK FILM</div>
+          <ul class="spec">
+            <li>High-transparency PET shrink film</li>
+            <li>Excellent barrier properties</li>
+            <li>Suitable for food, beverage &amp; pharma labeling</li>
+            <li>Shrink rate ≥ 75%</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/packaging/pof_film.jpg" alt="POF Shrink Film" loading="lazy"></div>
+        <div class="info">
+          <h4>Flexible Packaging</h4>
+          <div class="en-name">POF SHRINK FILM</div>
+          <ul class="spec">
+            <li>High clarity polyolefin shrink film</li>
+            <li>Dustproof, moistureproof performance</li>
+            <li>For food, cosmetics &amp; industrial packaging</li>
+            <li>Center-folded rolls available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/packaging/pof_film2.jpg" alt="PET Shrink Film" loading="lazy"></div>
+        <div class="info">
+          <h4>Flexible Packaging</h4>
+          <div class="en-name">PET SHRINK SLEEVES</div>
+          <ul class="spec">
+            <li>Full-body shrink sleeves for labeling</li>
+            <li>High-definition print reproduction</li>
+            <li>Tamper-evident packaging solution</li>
+            <li>Custom sizes &amp; designs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Priority 3: Industrial Products -->
+    <div class="cat-header">
+      <h3>🏭 Industrial Products</h3>
+      <span class="badge">#3 Priority</span>
+      <span class="count">3 categories</span>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="img-wrap"><img src="images/industrial/aluminum_sheet.webp" alt="Aluminum Coated Sheets" loading="lazy"></div>
+        <div class="info">
+          <h4>Aluminum Coated Sheets</h4>
+          <div class="en-name">Aluminum-Zinc Coated Steel</div>
+          <ul class="spec">
+            <li>Hot-dip aluminum-zinc alloy coated steel sheets</li>
+            <li>Thickness: 0.15–2.5 mm, Width: 600–1250 mm</li>
+            <li>Corrosion resistance 2–6× better than galvanized</li>
+            <li>Applications: roofing, wall panels, industrial use</li>
+            <li>Custom colors &amp; surface treatments available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap img-wrap-contain"><img src="images/industrial/needle_bearing.png" alt="Needle Roller Bearings" loading="lazy"></div>
+        <div class="info">
+          <h4>Needle Roller Bearings</h4>
+          <ul class="spec">
+            <li>High radial load capacity in compact design</li>
+            <li>Single &amp; double row, heavy-duty series</li>
+            <li>For automotive, gearboxes &amp; industrial machinery</li>
+            <li>Various sizes and cage types available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap img-wrap-contain"><img src="images/industrial/ball_bearing.png" alt="Ball Bearings" loading="lazy"></div>
+        <div class="info">
+          <h4>Ball Bearings</h4>
+          <ul class="spec">
+            <li>Deep groove ball bearings, various series</li>
+            <li>Single &amp; double row, sealed &amp; shielded</li>
+            <li>For motors, appliances &amp; industrial equipment</li>
+            <li>Quality certified, reliable performance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:48px">
+      <p style="color:#666;font-size:14px">Contact us for detailed product specifications, pricing, and customized sourcing.</p>
+      <a href="#contact" class="hero btn" style="margin-top:16px">Request a Quote</a>
+    </div>
+  </div>
+</div>
+
+<!-- Why Us -->
+<section id="why">
+  <div class="section-title">
+    <h2>Why Choose Us</h2>
+    <div class="subtitle">Our Advantages</div>
+  </div>
+  <div class="benefits">
+    <div class="benefit-card">
+      <div class="icon">📍</div>
+      <h4>Origin Sourcing</h4>
+      <p>Based in Shandong — China's garlic capital. Direct access to premium agricultural products.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">✅</div>
+      <h4>Quality Control</h4>
+      <p>Strict grading, sorting, and inspection to ensure consistent export quality.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">🌍</div>
+      <h4>Global Reach</h4>
+      <p>Products exported to Middle East, Africa, Southeast Asia, Europe and Americas.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">📦</div>
+      <h4>Flexible Supply</h4>
+      <p>Support FCL, LCL, and consolidated shipments. Custom packaging available.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="icon">🤝</div>
+      <h4>One-Stop Service</h4>
+      <p>From agricultural products to industrial materials — we handle it all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-title">
+      <h2>Contact Us</h2>
+      <div class="subtitle">Get in Touch</div>
+      <p>For inquiries, quotations, or partnership discussions — we look forward to hearing from you</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="icon">📞</div>
+        <h4>Phone / WhatsApp</h4>
+        <p>+86 185 5028 0828</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📧</div>
+        <h4>Email</h4>
+        <p>rain.shaw001@gmail.com</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <h4>Location</h4>
+        <p>Shandong, China</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🌾</div>
+        <h4>Business Scope</h4>
+        <p>Agricultural &middot; Packaging &middot; Industrial</p>
+      </div>
+    </div>
+    <a href="https://wa.me/8618550280828" target="_blank" class="btn">💬 WhatsApp Inquiry</a>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 Jiangyi Food Co., Ltd &amp; Bloom New Material Co., Ltd. All rights reserved.
+</footer>
+
+</body>
+</html>
